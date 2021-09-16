@@ -38,8 +38,8 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          build-args:
+          build-args: |
             PG_VERSION=${{ matrix.pg-version }}
-            PG_VERSION=${{ matrix.postgis-version }}
+            POSTGIS_VERSION=${{ matrix.postgis-version }}
           tags: |
             ghcr.io/${{ github.repository }}:${{ matrix.pg-version }}-${{ matrix.postgis-version }}
