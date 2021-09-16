@@ -14,8 +14,8 @@ jobs:
     if: startsWith(github.event.ref, 'refs/tags') || github.event_name == 'release'
     strategy:
       matrix:
-        pg-version: [9.6, 10, 11, 12, 13]
-        postgis-version: ['3.1', '2.5']
+        postgres: [9.6, 10, 11, 12, 13]
+        postgis: ['3.1', '2.5']
         exclude:
           - postgres: 13
             postgis: '2.5'
@@ -42,7 +42,7 @@ jobs:
           file: Dockerfile
           push: true
           build-args: |
-            PG_VERSION=${{ matrix.pg-version }}
-            POSTGIS_VERSION=${{ matrix.postgis-version }}
+            PG_VERSION=${{ matrix.postgres }}
+            POSTGIS_VERSION=${{ matrix.postgis }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ matrix.pg-version }}-${{ matrix.postgis-version }}
+            ghcr.io/${{ github.repository }}:${{ matrix.postgres }}-${{ matrix.postgis }}
